@@ -40,7 +40,7 @@ This path will be joined to the server's home directory. Valid paths include the
 
 This command outputs a JSON file as detailed below.
 
-#### Response body - Success
+#### Response - Success
 ```json
 {
     "message": "Folder content successfully retrieved",
@@ -79,7 +79,7 @@ This command outputs a JSON file as detailed below.
 - **size**(integer): file size in bytes
 - **lastModifiedDate**(string): date and time when a file was last modified
 
-## Error Handling
+## Response - Error Handling
 
 In the case of a failed request a JSON object will be returned with a single *message* attribute. 
 
