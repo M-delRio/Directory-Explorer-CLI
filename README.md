@@ -40,7 +40,7 @@ This path will be joined to the server's home directory. Valid paths include the
 
 This command outputs a JSON file as detailed below.
 
-#### Response - Success
+## Response - Success
 ```json
 {
     "message": "Folder content successfully retrieved",
