@@ -34,9 +34,62 @@ npm link
 get <path>
 ```
 
-**sourceFolder**: a path relative to the server's home directory 
+**path**: a path relative to the server's home directory 
 
-This path will be joined to the home directory. Valid paths include the home directory itself and any descendant folders of the home directory. Parent folders of the server's home directory are not accessible. 
+This path will be joined to the server's home directory. Valid paths include the home directory  itself (by submitting an empty string or `./`) and any descendant folders of the home directory. Parent folders of the server's home directory are not accessible (requests with `..` used in any part of the path to move up a directory will be rejected). 
 
-This command outputs a JSON file as detailed in the API documentation. 
+This command outputs a JSON file as detailed below.
+
+#### Response body - Success
+```json
+{
+    "message": "Folder content successfully retrieved",
+    "data": {
+        "sourceFolder": "images/company_retreat",
+        "files": [{fileObject1}, {fileObject2}, {fileObject3}],
+        "subFolders": ["2020", "2019", "2018"],
+        "fileCount": 45,
+        "totalFileSize": 500000000
+    }
+}
+```
+
+##### Attributes
+- **message**(string): indication of whether the request succeeded or not
+
+
+**data**: this object will only be present in the case of a successful request
+- **sourceFolder**(string): the submitted source folder path
+- **files**(array): object representation of files (see file object description below) within the source folder sorted by file size 
+- **subFolders**(array): the child subfolders of the source folder
+- **fileCount**(array): number of files within the source folder
+- **totalFileSize**(array): total size in bytes of the files within the source folder
+
+#### File Objects
+```json
+{
+  "name": "group_shot.jpg",
+  "size": 5000000,
+  "dateLastModified": "Fri Jan 17 2020 16:36:08 GMT-0500 (Eastern Standard Time)"
+}
+```
+
+##### Attributes
+- **name**(string): file name
+- **size**(integer): file size in bytes
+- **lastModifiedDate**(string): date and time when a file was last modified
+
+## Error Handling
+
+In the case of a failed request a JSON object will be returned with a single *message* attribute. 
+
+### Example Response - Request for a non existant source folder
+
+```json
+{
+  "message": "Folder not found!"  
+}
+```
+
+
 

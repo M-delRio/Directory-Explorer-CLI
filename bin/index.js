@@ -1,11 +1,7 @@
 #!/usr/bin/env node
 
-const pckg = require('./../package.json')
 const program = require('commander')
 const { getFolderData } = require("../lib/commands.js")
-
-// program.version(pckg.version)
-// program.parse(process.argv)
 
 program
   .version('1.0.0')
